@@ -1,40 +1,27 @@
 <template>
     <lightning-card title="Drag and Drop in Lightning Web Component">
-        <lightning-layout >
+        <lightning-layout>
             <div class="slds-p-around_small">
-                
-
-                <div class="slds-text-heading_small">First container</div><br/>
-                <div class="flex-container" ondragover={allowDrop} ondrop={drop}>
-                    <div id="ToD" class="box " > do not dissaper container, I bag you...</div>
-                   
-                
-                    <div id="ToDo2" class="box" draggable="true" ondragstart={drag}>
-                        First  <lightning-button-icon id = "but" icon-name="utility:close" label="Neutral" title="Non-primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button-icon>
-                    </div>
-
-                    <div id="ToDo3" class="box" draggable="true" ondragstart={drag}>
-                        Second             <lightning-button-icon id = "but2" icon-name="utility:close" onclick={handleClick}  alternative-text="Settings" title="Settings"></lightning-button-icon>
-                    </div>
-
-                    <div id="ToDo4" class="box" draggable="true" ondragstart={drag}>
-                        Third           <lightning-button-icon id = "but3" icon-name="utility:close" onclick={handleClick}  alternative-text="Settings" title="Settings"></lightning-button-icon>       
+                <div class="slds-p-around_small">
+                    <div id="idUpcomingPosts" class="flex-container" ondragover={allowDrop} ondrop={drop}>
+                        <template for:each={lstPosts1} for:item="post">
+                            <div  id={makeId} class="box" key={post} draggable="true" ondragstart={drag}>
+                                {post}<lightning-button-icon icon-name="utility:close"  onclick={handleClick}></lightning-button-icon>
+                            </div>
+                        </template>
                     </div>
                 </div>
-
                 <hr></hr>
-
-                <div class="slds-text-heading_small">Second Container</div><br/>
-                <div class="flex-container" ondragover={allowDrop} ondrop={drop}>
-                    <div id="ToDgt" class="box" > do not dissaper container, I bag you...</div>
-                    
-                
-                   
-                    <div id="ToDo1" class="box " draggable="true" ondragstart={drag}>
-                        Fourth      <lightning-button-icon id = "but4" icon-name="utility:close" onclick={handleClick}  alternative-text="Settings" title="Settings"></lightning-button-icon>
+                <div class="slds-p-around_small">
+                    <div id="idCompletedPosts" class="flex-container" ondragover={allowDrop} ondrop={drop}>
+                        <template for:each={lstPosts2} for:item="post">
+                            <div  id={makeId} class="box" key={post} draggable="true" ondragstart={drag}>
+                                {post}<lightning-button-icon icon-name="utility:close"  onclick={handleClick}></lightning-button-icon>
+                            </div>
+                        </template>
                     </div>
                 </div>
-
+                <lightning-button variant="base" onclick={handleClick2} label="Get Records" icon-name="utility:download" icon-position="right" class="slds-m-left_x-small"></lightning-button>
             </div>
         </lightning-layout>
     </lightning-card>

@@ -9,12 +9,11 @@
     font-size: 15px;
     text-align: center; 
 }
-
-
-
+.completed{
+    background-color: #56996b;
+}
 .flex-container {
     display: flex;
     flex-flow: row wrap;
-    width: 700px;
+    width: 1000px;
 }
-

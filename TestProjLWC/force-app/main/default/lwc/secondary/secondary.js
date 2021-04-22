@@ -22,7 +22,6 @@ export default class Secondary extends LightningElement {
 
     drag(event) {
         this.element = event.target;
-        this.containerID = event.target.parentNode.id;
     }
 
     drop(event) {

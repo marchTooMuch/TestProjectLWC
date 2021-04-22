@@ -7,13 +7,12 @@ export default class Secondary extends LightningElement {
     firstContainerID;
     secondContainerID;
     element;
-    contacts;
     constructor() {
         super();
         getContacts()
             .then(result => {
-                this.contacts2 = result;
-                this.contacts2.forEach(element=>{
+                this.contacts = result;
+                this.contacts.forEach(element=>{
                     this.elements1.push(element.Name)
                     this.elements2.push(element.Phone)
                     });
@@ -29,12 +28,13 @@ export default class Secondary extends LightningElement {
     }
 
     drop(event) {
-         this.element.remove();
          if(event.target.id===this.template.querySelectorAll('.flex-container')[0].id) {
              this.elements1.push(this.element.textContent);
+             this.element.remove();
          }
          if(event.target.id===this.template.querySelectorAll('.flex-container')[1].id) {
              this.elements2.push(this.element.textContent);
+             this.element.remove();
         }
     }
 

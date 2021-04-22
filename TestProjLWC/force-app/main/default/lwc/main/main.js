@@ -4,17 +4,22 @@ import { createMessageContext, releaseMessageContext, publish, subscribe, unsubs
 import DragDropChannel from "@salesforce/messageChannel/DragDrop__c";
 export default class Main extends LightningElement {
     @track contacts2 = [];
-    draggedItem;
-    draggedItemId;
-    context = createMessageContext();
-    subscription = null;
     @track lstPosts1 = [];
     @track lstPosts2 = [];
+    containerID;
+    draggedItem;
+    context = createMessageContext();
+    subscription = null;
+  
     constructor() {
         super();
         getContacts()
             .then(result => {
                 this.contacts2 = result;
+                this.contacts2.forEach(element=>{
+                    this.lstPosts1.push(element.Name)
+                    this.lstPosts2.push(element.Phone)
+                    });
             })
             .catch(error => {
                 this.error = error;
@@ -30,13 +35,16 @@ export default class Main extends LightningElement {
             }
         });
     }
+
     handleMessage(message) {
         this.draggedItem = message.draggedItem;
         this.draggedItemId = message.itemId;
     }
+
     allowDrop(event){
         event.preventDefault();
     }
+
     drop(event) {
         event.preventDefault();
         if(event.target.id ==="idCompletedPosts-64") {
@@ -57,6 +65,7 @@ export default class Main extends LightningElement {
             publish(this.context, DragDropChannel, message);
         }
     }
+
     drag(event) {
         const message = {
             draggedItem : event.target.textContent,
@@ -65,13 +74,16 @@ export default class Main extends LightningElement {
         };
         publish(this.context, DragDropChannel, message);
     }
+
     disconnectedCallback() {
         releaseMessageContext(this.context);
     }
+
     handleClick(event) {
         var element = event.target;
        element.parentNode.remove();
     }
+
     handleClick2(event) {
         this.contacts2.forEach(element=>{this.lstPosts1.push(element.Name)});
         this.contacts2.forEach(element=>{this.lstPosts2.push(element.Phone)});

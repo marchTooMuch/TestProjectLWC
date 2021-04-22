@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title= "Drag and Drop">
+        <lightning-layout>
+            <div class = "slds-p-around_small">
+                <div class = "slds-p-around_small">
+                    <div class = "flex-container" id = "firstContainer" ondragover = {allowDrop} ondrop = {drop}>
+                        <template for:each = {elements1} for:item="element">
+                            <div key = {element} class = "box" id={element} draggable = "true" ondragstart = {drag}>{element}<lightning-button-icon icon-name="utility:close"  onclick={handleClick}></lightning-button-icon></div>                   
+                        </template>
+                    </div>
+                </div>
+                <hr></hr>
+                <div class = "slds-p-around_small">
+                    <div class = "flex-container" id = "secondContainer" ondragover = {allowDrop} ondrop = {drop}>
+                        <template for:each={elements2} for:item = "element">
+                            <div class = "box" key = {element} id={element} draggable = "true" ondragstart = {drag}> {element}<lightning-button-icon icon-name="utility:close"  onclick={handleClick}></lightning-button-icon></div>
+                        </template>
+                    </div>
+               </div>
+            </div>
+        </lightning-layout>
+    </lightning-card>
+</template>

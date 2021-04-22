@@ -5,7 +5,7 @@
                 <div class="slds-p-around_small">
                     <div id="idUpcomingPosts" class="flex-container" ondragover={allowDrop} ondrop={drop}>
                         <template for:each={lstPosts1} for:item="post">
-                            <div  id={makeId} class="box" key={post} draggable="true" ondragstart={drag}>
+                            <div custom-id={makeId} id={makeId} class="box" key={post} draggable="true" ondragstart={drag}>
                                 {post}<lightning-button-icon icon-name="utility:close"  onclick={handleClick}></lightning-button-icon>
                             </div>
                         </template>

@@ -4,8 +4,6 @@ import getContacts from "@salesforce/apex/Contacts.getContacts";
 export default class Secondary extends LightningElement {
     @track elements1 = [];
     @track elements2 = [];
-    firstContainerID;
-    secondContainerID;
     element;
     constructor() {
         super();
